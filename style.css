@@ -1,0 +1,40 @@
+h1 {
+    background-color: cornflowerblue;
+    text-align: center;
+    width: 50% ;
+    margin: auto;
+    color: beige;
+}
+
+.sub-title {
+    width: 50% ;
+    margin: auto;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    margin: auto;
+    width: 50% ;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    flex-direction: column;
+    align-items: center;
+    background-color: bisque;
+}
+
+.input-berat {
+    width: 20% ;
+}
+
+.input-usia {
+    width: 20%;
+}
+
+.input-tinggi {
+    width: 20%;
+}
+
+.input-submit {
+    width: 20%;
+}
