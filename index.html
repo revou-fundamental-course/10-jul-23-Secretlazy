@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kalkulator BMI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>kalkulator BMI</h1>
+    <div class="main_content">
+        <form>
+             <label for="berat">Berat Badan</label>
+             <input class="input-berat" type="number" id="berat" name="berat" placeholder="Berat Badan (kg)" min="0" max="100"><br><br>
+             <label for="usia">Usia</label>
+             <input class="input-usia" type="number" id="usia" name="usia" placeholder="Usia/Umur" min="0" max="60"><br><br>
+             <label for="tinggi">Tinggi Badan</label>
+             <input class="input-tinggi" type="number" id="tinggi" name="tinggi" placeholder="Tinggi Badan (cm)" min="0" max="200"><br><br>
+             <input class="input-submit" type="submit" value="Hitung BMI">
+        </form>
+        <div class="hasil-bmi" id="hasil-bmi"></div>
+    </div>
+
+    <script>
+        var submit = document.querySelector(".input-submit");
+
+        submit.addEventListener("click", function (event) {
+            event.preventDefault();
+            var beratValue = parseFloat(document.getElementById("berat").value);
+            var tinggiValue = parseFloat(document.getElementById("tinggi").value) / 100; // Konversi tinggi ke meter
+            var usiaValue = parseInt(document.getElementById("usia").value);
+
+            if (beratValue <= 100 && tinggiValue <= 2.0 && usiaValue <= 60) {
+                var bmi = calculateBMI(beratValue, tinggiValue);
+                displayBMIResult(bmi, usiaValue);
+            } else {
+                alert("Input tidak valid. Pastikan berat badan <= 100 kg, tinggi badan <= 200 cm, dan usia <= 60 tahun.");
+            }
+        });
+
+        function calculateBMI(berat, tinggi) { 
+            return berat / (tinggi * tinggi);
+        }
+
+        function displayBMIResult(bmi, usia) {
+            var hasilBMI = "";
+            if (bmi < 18.5) {
+                hasilBMI = "Kurus";
+            } else if (bmi >= 18.5 && bmi < 24.9) {
+                hasilBMI = "Normal";
+            } else if (bmi >= 25 && bmi < 29.9) {
+                hasilBMI = "Gemuk";
+            } else {
+                hasilBMI = "Obesitas";
+            }
+
+            var resultDiv = document.getElementById("hasil-bmi");
+            resultDiv.innerHTML = "Hasil BMI Anda: " + bmi.toFixed(2) + " (Status: " + hasilBMI + ", Usia: " + usia + " tahun)";
+        }
+    </script>
+</body>
+</html>
